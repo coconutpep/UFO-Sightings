@@ -998,7 +998,3 @@ var data = [{
     comments: "Bright orange object&#44 rapid speed and direction changes .."
   }
 ];
-
-const shapes = data.map(ufo => ufo.shape);
-const uniqueShapes = Array.from(new Set(shapes));
-console.log(uniqueShapes);
