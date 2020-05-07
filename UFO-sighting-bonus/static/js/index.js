@@ -2,6 +2,7 @@
 let ufos = data;
 //Select inputs for later filtering
 const dateInput = d3.select("#datetime");
+const cityInput = d3.select("#city");
 const form = d3.select("form");
 //Create table from data
 //select table
@@ -26,9 +27,11 @@ function runFilter() {
     const rows = table.selectAll("tr")["_groups"][0];
     //Grab the inputs
     const inputDate = dateInput.property("value");
+    //Lower case words to standardize for filter matching
+    const inputCity = cityInput.property("value").toLowerCase();
     //Conditional Statement to filter table based on input
     //Date was inputted
-    if (typeof inputDate === "string") {
+    if (inputDate !== "") {
         //For loop iterates through rows and hides data based on input
         for (let i=1; i<rows.length; i++) {
             //Grabs date from row
@@ -40,6 +43,22 @@ function runFilter() {
             }
             else {
                 //Hide data that doesn't match
+                rows[i].style.display="none";
+            }
+        }
+    }
+    //City was inputted
+    else if (inputCity !== "") {
+        //For loop iterates through table and hides unwanted data
+        for (let i=1; i<rows.length; i++) {
+            //Grabs city from row and lowercases it for standarization
+            const dataCity = rows[i]["cells"][1]["textContent"].toLowerCase();
+            //If city names match show data
+            if(dataCity === inputCity) {
+                rows[i].style.display="";
+            }
+            //If city names don't match hide data
+            else {
                 rows[i].style.display="none";
             }
         }
@@ -66,4 +85,5 @@ createTable(ufos);
 
 //Filter data based on form submission
 dateInput.on("change", runFilter);
+cityInput.on("change", runFilter);
 form.on("submit", runFilter);
