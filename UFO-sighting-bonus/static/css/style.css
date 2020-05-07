@@ -1,0 +1,48 @@
+body {
+    background-image: linear-gradient(rgb(29, 48, 28),rgb(21, 227, 7));
+    font-family: Copperplate, Consolas, monospace;
+}
+
+img {
+    height:70px;
+}
+
+form {
+    border: 1px solid black;
+    border-radius: 15px;
+    padding:8px;
+    background-color:#343a40;
+    color: rgb(27, 146, 18);
+}
+
+.btn-primary {
+    background-color: rgb(9, 184, 0);
+    color: #343a40;
+    border-color: #343a40;
+}
+
+.btn-primary:hover {
+    background-color: rgb(9, 184, 0);
+    color: #343a40;
+    border-color: black;
+    box-shadow: 2px 2px black;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    background-color: rgb(9, 184, 0);
+    color: #343a40;
+    border-color: black;
+}
+
+.jumbotron {
+    background: none;
+    color: rgb(9, 184, 0);
+    text-shadow: 3px 3px black;
+    text-align:center;
+    background-image: url("../images/ufo.png");
+    background-position: center;
+}
+
+.table .thead-dark th {
+    color: rgb(27, 146, 18);
+}
