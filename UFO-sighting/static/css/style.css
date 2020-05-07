@@ -15,6 +15,25 @@ form {
     color: rgb(27, 146, 18);
 }
 
+.btn-primary {
+    background-color: rgb(9, 184, 0);
+    color: #343a40;
+    border-color: #343a40;
+}
+
+.btn-primary:hover {
+    background-color: rgb(9, 184, 0);
+    color: #343a40;
+    border-color: black;
+    box-shadow: 2px 2px black;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    background-color: rgb(9, 184, 0);
+    color: #343a40;
+    border-color: black;
+}
+
 .jumbotron {
     background: none;
     color: rgb(9, 184, 0);
