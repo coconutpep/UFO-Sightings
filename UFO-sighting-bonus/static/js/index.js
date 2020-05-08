@@ -133,6 +133,12 @@ function runFilter() {
             }
         }
     }
+    //Resets table if all fields are blank
+    else {
+        for (let i=1; i<rows.length; i++) {
+            rows[i].style.display="";
+        }
+    }
 }
 
 //Create table
