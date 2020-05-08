@@ -1,11 +1,30 @@
 //Read in data as a different variable for changing
 let ufos = data;
+
+//Add shape input menu
+//Select shape input
+const shape = d3.select("#shape");
+//Array to list of unique shapes
+const shapes = []
+//Iterate through data to push unique shapes to above array
+ufos.forEach(ufo => {
+    //Check if shape is already in array push to it if not
+    if (shapes.includes(ufo.shape) === false) {
+        shapes.push(ufo.shape);
+    }
+});
+//Iterate through shapes and append options to shape input
+shapes.forEach(shapeOption => {
+    shape.append("option").text(shapeOption);
+});
 //Select inputs for later filtering
 const dateInput = d3.select("#datetime");
 const cityInput = d3.select("#city");
 const stateInput = d3.select("#state");
 const countryInput = d3.select("#country");
+const shapeInput = d3.select("#shape");
 const form = d3.select("form");
+
 //Create table from data
 //select table
 const table = d3.select("table");
@@ -33,6 +52,7 @@ function runFilter() {
     const inputCity = cityInput.property("value").toLowerCase();
     const inputState = stateInput.property("value").toLowerCase();
     const inputCountry = countryInput.property("value").toLowerCase();
+    const inputShape = shapeInput.property("value");
     //Conditional Statement to filter table based on input
     //Date was inputted
     if (inputDate !== "") {
@@ -98,6 +118,21 @@ function runFilter() {
             }
         }
     }
+    else if (inputShape !== "") {
+        //For loop iterates through table and hides unwanted data
+        for (let i=1; i<rows.length; i++) {
+            //Grabs shape from row and lowercases it for standarization
+            const dataShape = rows[i]["cells"][4]["textContent"];
+            //If shape names match show data
+            if(dataShape === inputShape) {
+                rows[i].style.display="";
+            }
+            //If shape names don't match hide data
+            else {
+                rows[i].style.display="none";
+            }
+        }
+    }
 }
 
 //Create table
@@ -123,4 +158,5 @@ dateInput.on("change", runFilter);
 cityInput.on("change", runFilter);
 stateInput.on("change", runFilter);
 countryInput.on("change", runFilter);
+shapeInput.on("change", runFilter);
 form.on("submit", runFilter);
